@@ -1,38 +1,176 @@
-.App {
-  text-align: center;
+/* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 100vh;
+  padding: 0 10px;
+  background: burlywood;
+}
+
+/* Container for the game */
+.hangman-container{
+  width: 850px;
+  background: #fff;
+  display: flex;
+  gap: 70px;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 40px;
+  border-radius: 10px;
+}
+
+/* Hangman box styling */
+.hangman-box img {
+  max-width: 270px;
+}
+
+.hangman-box h1 {
+  font-size: 1.45rem;
+  margin-top: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Word display styling */
+.word-display {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.word-display .letter {
+  width: 28px;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  border-bottom: 3px solid black;
+}
+
+.word-display .letter.guessed {
+  border-color: transparent;
+  margin-bottom: 35px;
+}
+
+/* Game box styling */
+.game-box h4 {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.game-box h4 b {
+  font-weight: 600;
+}
+
+.game-box .guesses-text b {
+  color: #ff0000;
+}
+
+.game-box .keyboard {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.game-box .keyboard button {
+  padding: 7px;
+  width: calc(100% / 9 - 5px);
+}
+
+/* Button styling for keyboard and modal */
+:where(.game-modal, .keyboard) button {
   color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #5e63ba;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  text-transform: uppercase;
+  border-radius: 4px;
 }
 
-.App-link {
-  color: #61dafb;
+:where(.game-modal, .keyboard) button:hover {
+  background: #878ac4;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Game modal styling */
+.game-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.game-modal.visible {
+  display: flex;
+}
+
+.game-modal .content {
+  background: white;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.game-modal img {
+  max-width: 130px;
+  margin-bottom: 20px;
+}
+
+.game-modal h4 {
+  font-size: 1.53rem;
+}
+
+.game-modal p {
+  font-size: 1.15rem;
+  margin: 15px 0 30px;
+  font-weight: 500;
+}
+
+.game-modal p b {
+  color: #5e63ba;
+  font-weight: 600;
+}
+
+.game-modal button {
+  padding: 12px 23px;
+}
+
+/* Responsive styling */
+@media (max-width: 782px) {
+  .container {
+    flex-direction: column;
+    padding: 30px 15px;
+    align-items: center;
   }
-  to {
-    transform: rotate(360deg);
+
+  .hangman-box img {
+    max-width: 200px;
+  }
+
+  .hangman-box h1 {
+    display: none;
   }
 }
